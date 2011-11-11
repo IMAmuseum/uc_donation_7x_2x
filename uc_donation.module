@@ -226,7 +226,7 @@ function uc_donation_view($node, $teaser = 0, $page = 0) {
  * @see http://drupal.org/node/1354
  */
 function uc_donation_add_to_cart_form_validate($form, &$form_state) {
-	$donate_amount = floatval(ereg_replace('[^0-9\.]*', '', $form_state['values']['donate_amount']));
+	$donate_amount = floatval(preg_replace('/[^0-9\.]*/', '', $form_state['values']['donate_amount']));
 	if (!is_numeric($donate_amount) || $donate_amount <= 0) {
 		form_set_error('donate_amount', t('You have entered an invalid amount.'));
 	}
@@ -264,7 +264,7 @@ function uc_donation_buy_it_now_form($form_state, $node) {
 function uc_donation_cart_view_validate($form, &$form_state) {
 	foreach ($form_state['values']['items'] as $key => $item) {
 		if (isset($item['donate_amount'])) {
-			$donate_amount = floatval(ereg_replace('[^0-9\.]*', '', $item['donate_amount']));
+			$donate_amount = floatval(preg_replace('/[^0-9\.]*/', '', $item['donate_amount']));
 			$data = unserialize($item['data']);
 			$prev_data = $data;
 			$data['data'] = $prev_data;
