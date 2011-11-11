@@ -175,8 +175,12 @@ function uc_donation_form(&$node) {
   $form_state = array();
   $form = uc_product_form($node, $form_state);
 
-  $form['#validate'][] = 'uc_product_validate';
+  $form['#validate'][] = 'uc_donation_form_validate';
   return $form;
+}
+
+function uc_donation_form_validate($form, &$form_state) {
+	uc_product_validate( (object) $form_state['values'] );
 }
 
 /**
