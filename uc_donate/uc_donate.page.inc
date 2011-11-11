@@ -95,7 +95,7 @@ function uc_donate_form($form, &$form_state) {
 function uc_donate_form_validate($form, &$form_state) {
   foreach ($form_state['values'] as $key => $value) {
     if (substr($key, 0, 6) == 'donate') {
-      $donate_amount = floatval(ereg_replace('[^0-9\.]*', '', $form_state['values'][$key]['donate_amount']));
+      $donate_amount = floatval(preg_replace('/[^0-9\.]*/', '', $form_state['values'][$key]['donate_amount']));
       if (!is_numeric($donate_amount) || $donate_amount < 0) {
         form_set_error($key, t('Amount value has to be a number and can not be less than 0.'));
       }
