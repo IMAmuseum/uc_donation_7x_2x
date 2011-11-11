@@ -102,7 +102,7 @@ function uc_donation_node_info($reset = FALSE) {
  */
 function uc_donation_form_alter(&$form, &$form_state, $form_id) {
   if (substr($form_id, 0, 27) == 'uc_product_add_to_cart_form') {
-    $node = $form['#parameters'][2];
+    $node =  $form['node']['#value'];
     if ($node->type == 'donation') {
       $form['donate_amount'] = array(
           '#type' => 'textfield',
