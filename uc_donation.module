@@ -170,6 +170,8 @@ function uc_donation_forms($form_id, $args) {
  * @see http://drupal.org/node/1354
  */
 function uc_donation_form(&$node) {
+  uc_product_prepare($node);
+  
   $form_state = array();
   $form = uc_product_form($node, $form_state);
 
