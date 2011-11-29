@@ -320,7 +320,8 @@ function uc_donation_uc_cart_display($item) {
 	$element['module']['#value'] = 'uc_donation';
 	$element['qty'] = array(
       '#type' => 'hidden',
-      '#value' => $item->qty
+      '#value' => $item->qty,
+      '#default_value' => $item->qty,
 	);
 	$element['donate_amount'] = array(
       '#type' => 'textfield',
@@ -330,6 +331,7 @@ function uc_donation_uc_cart_display($item) {
       '#field_prefix' => variable_get('uc_sign_after_amount', FALSE) ? '' : variable_get('uc_currency_sign', '$'),
       '#field_suffix' => variable_get('uc_sign_after_amount', FALSE) ? variable_get('uc_currency_sign', '$') : ''
 	);
+    $element['#total'] = number_format($item->price, 2);
 
 	return $element;
 }
