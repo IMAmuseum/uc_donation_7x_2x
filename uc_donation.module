@@ -127,6 +127,10 @@ function uc_donation_form_alter(&$form, &$form_state, $form_id) {
 
 		// Add spacer to regular products for amount column
 		foreach (element_children($form['items']) as $item) {
+            if (isset($form['items'][$item]['donate_amount']) && $form['items'][$item]['module']['#value'] == 'uc_donation') {
+                $form['items'][$item]['total']['#price'] = $form['items'][$item]['donate_amount']['#default_value'];
+            }
+
 			if (isset($form['items'][$item]['module']) && $form['items'][$item]['module']['#value'] != 'uc_donation') {
 				$form['items'][$item]['desc']['#cell_attributes']['colspan'] = '2';
 			}
