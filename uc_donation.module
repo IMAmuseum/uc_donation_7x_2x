@@ -393,6 +393,7 @@ function uc_donation_uc_update_cart_item($nid, $data = array(), $qty, $cid = NUL
  * Implements hook_add_to_cart_data().
  */
 function uc_donation_uc_add_to_cart_data($form_values) {
+    if (!isset($form_values['donate_amount'])) return;
 	return array('donate_amount' => $form_values['donate_amount']);
 }
 
